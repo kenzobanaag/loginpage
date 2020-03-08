@@ -31,7 +31,7 @@ const useStyles = makeStyles(theme => ({
   }, 
   gradient: {
     minHeight: 90,
-    background: 'linear-gradient(45deg, #808080 30%, #ffa500 90%)',
+    background: 'linear-gradient(45deg, #644e5b 30%, #314455 90%)',
     textAlign: "center"
   }
 }));
@@ -43,6 +43,8 @@ export default function SimpleTabs() {
 
   const [errorText, setErrorText] = React.useState("");
 
+  const [token, setToken] = React.useState("");
+
   const handleOnClick = (event) => {
     event.preventDefault();
     var email = document.getElementById("user_email_id").value
@@ -51,8 +53,14 @@ export default function SimpleTabs() {
 
     APICalls.login({email: email, password: password}).then(response => {
         console.log(response.data);
+        console.log(response.data.data.token);
         setError(false);
         setErrorText("");
+        APICalls.test(response.data.data.token).then(response2 => {
+          console.log(response2.data);
+        }).catch(error => {
+          console.log(error)
+        });
     }).catch(error => {
         console.log(error);
         setError(true);
@@ -66,7 +74,7 @@ export default function SimpleTabs() {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static" > 
+      <AppBar position="static" className={classes.gradient}> 
       {/* className={classes.gradient} */}
       <Container maxWidth="md">
         <Toolbar className={classes.toolbar}>

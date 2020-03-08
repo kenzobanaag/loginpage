@@ -21,6 +21,14 @@ class ApiCall {
     static signup(userObject) {
         return (axios.post(LOGIN_URL + "login/register", userObject));
     }
+
+    static test(token) {
+        return (axios.get(LOCAL_URL + SURVEY + USER, {
+            headers: {
+              'Authorization': `Bearer ${token}`
+            }
+          }))
+    }
 }
 
 export default ApiCall;

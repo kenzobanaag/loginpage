@@ -71,7 +71,7 @@ export default function CreateAccountPage() {
             onChange={handleOnChange}
             /></div>
             <Button type="submit"
-            variant="contained" color="primary" className={classes.topMargin} >
+            variant="contained" color="primary" style={{background: 'linear-gradient(45deg, #644e5b 30%, #314455 90%)'}} className={classes.topMargin} >
                 <Typography variant="h5">
                     Sign Up
                 </Typography>
